@@ -1,0 +1,1 @@
+* CashBuddy for impaired individuals
