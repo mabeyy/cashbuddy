@@ -36,7 +36,7 @@ def draw_bounding_boxes(frame, response):
         label = pred['class']
         start, end = (x - w // 2, y - h // 2), (x + w // 2, y + h // 2)
         cv2.rectangle(frame, start, end, (0, 255, 0), 2)
-        cv2.putText(frame, label, (start[0], start[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 2)
+        cv2.putText(frame, label, (start[0], start[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 3)
 
 def main():
     # Open camera feed
@@ -68,7 +68,7 @@ def main():
         play_text_to_speech(f'{total_sum} peso')
 
         # Display the sum on the image
-        cv2.putText(frame, f"Sum: PHP {total_sum}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+        # cv2.putText(frame, f"Sum: PHP {total_sum}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
         # Draw bounding boxes on the image
         draw_bounding_boxes(frame, response)
