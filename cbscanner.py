@@ -58,6 +58,9 @@ def main():
         # Perform prediction
         response = model.predict(temp_image_path, confidence=70, overlap=30).json()
 
+        # Delete the temporary image file
+        os.remove(temp_image_path)
+        
         # Calculate total sum from predictions
         total_sum = process_predictions(response)
 
