@@ -8,7 +8,7 @@ from kivy.uix.camera import Camera
 Window.size = (360, 640)
 
 # Load the .kv file
-Builder.load_file('camera_app.kv')
+Builder.load_file('app.kv')
 
 class MainScreen(Screen):        
     def go_to_settings(self, instance):
