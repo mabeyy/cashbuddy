@@ -6,44 +6,38 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-
-        # Camera widget - Positioned in the center of the screen
-        Camera:
-            id: camera
-            resolution: (480, 640)
-            play: True
-            size_hint: None, None
-            size: 320, 480
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
         
         # Settings button
         Button:
             id: settings_button
             size_hint: None, None
-            size: 60, 60
-            pos_hint: {"right": 0.95, "top": 0.95}
+            size: 50, 50
+            pos_hint: {"right": 0.90, "top": 0.95}
             background_normal: 'assets/settings.png'
-            background_down: 'assets/settings.png'
+            background_down: 'assets/settings1.png'
+            border: [0, 0, 0, 0]
             on_press: root.go_to_settings(self)
         
-        # Camera button
+        # Flip Camera button
         Button:
             id: camera_button
-            size_hint: None, None
-            size: 80, 80
-            pos_hint: {"x": 0.05, "y": 0.05}
-            background_normal: 'assets/flip_camera.png'
-            background_down: 'assets/flip_camera.png'
+            size_hint: (None, None)
+            size: 50, 50
+            pos_hint: {"right": 0.30, "y": 0.05}
+            background_normal: 'assets/flip.png'
+            background_down: 'assets/flip1.png'
+            border: [0, 0, 0, 0]
             on_press: root.on_flip(self);
         
         # Flash button
         Button:
             id: flash_button
             size_hint: None, None
-            size: 80, 80
-            pos_hint: {"right": 0.95, "y": 0.05}
+            size: 25, 60
+            pos_hint: {"right": 0.80, "y": 0.05}
             background_normal: 'assets/flash.png'
-            background_down: 'assets/flash.png'
+            background_down: 'assets/flash1.png'
+            border: [0, 0, 0, 0]
             on_press: root.on_flash(self);
 
 <SettingsScreen>:
@@ -59,56 +53,57 @@
         Button:
             id: back_button
             size_hint: None, None
-            size: 70, 70
+            size: 50, 50
             pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
             background_normal: 'assets/back.png'
-            background_down: 'assets/back.png'
+            background_down: 'assets/back1.png'
+            border: [0, 0, 0, 0]
             on_press: root.go_to_video()
 
-        # Central BoxLayout containing all controls
         BoxLayout:
             orientation: 'vertical'
             size_hint: None, None
             size: 200, 300  # Overall size of the settings panel
-            pos_hint: {"center_x": 0.46, "center_y": 0.6}
-            spacing: 30  # Space between rows
+            pos_hint: {"center_x": 0.43, "center_y": 0.6}
+            spacing: 50
 
-            # Row 1: Volume and Language buttons
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint: 1, None
                 height: 100  # Height of the row
-                spacing: 40  # Space between buttons
+                spacing: 50  # Space between buttons
 
                 Button:
                     id: volume_button
                     size_hint: None, None
-                    size: 100, 100
+                    size: 110, 90
                     background_normal: 'assets/volume.png'
                     background_down: 'assets/volume.png'
+                    border: [0, 0, 0, 0]
                     on_press: root.adjust_volume()
 
                 Button:
                     id: language_button
                     size_hint: None, None
-                    size: 100, 100
+                    size: 110, 90
                     background_normal: 'assets/language.png'
-                    background_down: 'assets/language.png'
+                    background_down: 'assets/language1.png'
+                    border: [0, 0, 0, 0]
                     on_press: root.change_language()
 
-            # Row 2: Flip Camera and Manual buttons
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint: 1, None
-                pos_hint: {"center_x": 0.8}
+                pos_hint: {"center_x": 0.85}
                 height: 100  # Height of the row
 
                 Button:
                     id: manual_button
                     size_hint: None, None
-                    size: 100, 100
+                    size: 120, 90
                     background_normal: 'assets/manual.png'
-                    background_down: 'assets/manual.png'
+                    background_down: 'assets/manual1.png'
+                    border: [0, 0, 0, 0]
                     on_press: root.manual_screen()
 
 <AdjustVolumeScreen>:
@@ -124,10 +119,11 @@
         Button:
             id: back_button
             size_hint: None, None
-            size: 70, 70
+            size: 50, 50
             pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
             background_normal: 'assets/back.png'
             background_down: 'assets/back.png'
+            border: [0, 0, 0, 0]
             on_press: root.go_to_settings()
 
 <ChangeLanguageScreen>:
@@ -143,10 +139,11 @@
         Button:
             id: back_button
             size_hint: None, None
-            size: 70, 70
+            size: 50, 50
             pos_hint: {"x": 0.05, "top": 0.95}
             background_normal: 'assets/back.png'
-            background_down: 'assets/back.png'
+            background_down: 'assets/back1.png'
+            border: [0, 0, 0, 0]
             on_press: root.go_to_settings()
 
         BoxLayout:
@@ -173,47 +170,6 @@
                 height: 50
                 font_size: 20
 
-<FlipCameraScreen>:
-    FloatLayout:
-        canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        # Back button        
-        Button:
-            id: back_button
-            size_hint: None, None
-            size: 70, 70
-            pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
-            background_normal: 'assets/back.png'
-            background_down: 'assets/back.png'
-            on_press: root.go_to_settings()
-
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint: None, None
-            size: 300, 80  # Adjusted for better alignment
-            pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            padding: 20  # Margins around the content
-            spacing: 15  # Space between the Label and Switch
-
-            Label:
-                text: 'Flip Camera'
-                font_size: 20
-                color: 0, 0, 0, 1  # Black text color (set explicitly if needed)
-                size_hint: None, None
-                size: 150, 50
-
-            Switch:
-                id: flip_switch
-                size_hint: None, None
-                size: 80, 50
-                active: False
-                on_active: root.switch_callback(self, self.active)
-
 <ManualScreen>:
     FloatLayout:
         canvas.before:
@@ -227,8 +183,9 @@
         Button:
             id: back_button
             size_hint: None, None
-            size: 70, 70
+            size: 50, 50
             pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
             background_normal: 'assets/back.png'
-            background_down: 'assets/back.png'
+            background_down: 'assets/back1.png'
+            border: [0, 0, 0, 0]
             on_press: root.go_to_settings()
