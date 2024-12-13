@@ -1,17 +1,17 @@
+
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.config import Config
 from kivy.uix.button import Button
-from kivy.uix.image import Image
+
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.graphics import Color, Rectangle
 from kivy.uix.camera import Camera
 
 ##### Window Size
-Config.set('graphics', 'width', '480')
-Config.set('graphics', 'height', '800')
+Config.set('graphics', 'width', '540')
+Config.set('graphics', 'height', '920')
 Config.set('graphics', 'resizable', '1')
 Config.set('graphics', 'position', 'auto')
 
@@ -33,36 +33,32 @@ class CameraScreen(FloatLayout):
             self.rect = Rectangle(size=(self.width, self.height), pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        self.camera = Camera(resolution=(480, 640), play=True)
+        self.camera = Camera(resolution=(540, 920), play=True)
         self.add_widget(self.camera)
 
 
         ### Settings Button ###
         btn = Button(size_hint=(None, None),
-                     size=(70, 70),
-                     pos_hint={'x': 0.86, 'y': 0.91},
-                     background_normal='',
-                     background_color=(0, 0, 0, 0)
+                     size=(110, 110),
+                     pos_hint={'x': 0.82, 'y': 0.90},
+                     background_normal='assets/settings.png',
+                     background_down = 'assets/settings_png',
+                     border = (0, 0, 0, 0),
+                     background_color=(1, 1, 1, 1)
                      )
-        icon = Image(source='assets/settings.png',
-                     size_hint=(None, None),
-                     size=(60, 60),
-                     pos=(521,915))
-        btn.add_widget(icon)
+
         btn.bind(on_press=self.go_to_settings)
         self.add_widget(btn)
 
         record_btn = Button(size_hint=(None, None),
-                            size=(80, 80),
-                            pos_hint={'x': 0.75, 'y': 0.09},
-                            background_normal='',
-                            background_color=(.7, .7, .7, 0))
-        record_icon = Image(source='assets/record.png',
-                            size_hint=(None, None),
-                            size=(80, 80),
-                            pos=(455,85)
+                            size=(110, 110),
+                            pos_hint={'x': 0.72, 'y': 0.07},
+                            background_normal='assets/record.png',
+                            background_down = 'assets/record_png',
+                            border = (0, 0, 0, 0),
+                            background_color=(1, 1, 1, 1)
                             )
-        record_btn.add_widget(record_icon)
+
         record_btn.bind(on_press=self.go_to_record)
         self.add_widget(record_btn)
 
@@ -70,14 +66,12 @@ class CameraScreen(FloatLayout):
         capture_btn = Button(size_hint=(None, None),
                              size=(150, 150),
                              pos_hint={'x': 0.37, 'y': 0.05},
-                             background_normal='',
-                             background_color=(.7, .7, .7, 0))
-        capture_btn_icon = Image(source='assets/capture.png',
-                                 size_hint=(None, None),
-                                 size=(140, 140),
-                                 pos=(227,55)
-                                 )
-        capture_btn.add_widget(capture_btn_icon)
+                             background_normal='assets/capture.png',
+                             background_down = 'assets/capture_png',
+                             border = (0, 0, 0, 0),
+                             background_color=(1, 1, 1, 1)
+                             )
+
         #capture_btn.bind(on_press=self.capture_image)
         self.add_widget(capture_btn)
 
@@ -120,16 +114,13 @@ class RecordScreen(FloatLayout):
 
         ### Settings Button ###
         btn = Button(size_hint=(None, None),
-                     size=(70, 70),
-                     pos_hint={'x': 0.86, 'y': 0.91},
-                     background_normal='',
-                     background_color=(0, 0, 0, 0)
+                     size=(110, 110),
+                     pos_hint={'x': 0.82, 'y': 0.90},
+                     background_normal='assets/settings.png',
+                     background_down = 'assets/settings_png',
+                     border = (0, 0, 0, 0),
+                     background_color=(1, 1, 1, 1)
                      )
-        icon = Image(source='assets/settings.png',
-                     size_hint=(None, None),
-                     size=(60, 60),
-                     pos=(521,915))
-        btn.add_widget(icon)
         btn.bind(on_press=self.go_to_settings)
         self.add_widget(btn)
 
@@ -137,13 +128,12 @@ class RecordScreen(FloatLayout):
         camera_btn = Button(size_hint=(None, None),
                             size=(80, 80),
                             pos_hint={'x': 0.09, 'y': 0.09},
-                            background_normal='',
-                            background_color=(.7, .7, .7, 0))
-        camera_icon = Image(source='assets/camera.png',
-                            size_hint=(None, None),
-                            size=(70, 70),
-                            pos=(58,90))
-        camera_btn.add_widget(camera_icon)
+                            background_normal='assets/camera.png',
+                            background_down='assets/camera.png',
+                            border=(0, 0, 0, 0),
+                            background_color=(1, 1, 1, 1)
+                            )
+
         camera_btn.bind(on_press=self.go_to_camera)
         self.add_widget(camera_btn)
 
@@ -151,14 +141,11 @@ class RecordScreen(FloatLayout):
         record_btn = Button(size_hint=(None, None),
                              size=(150, 150),
                              pos_hint={'x': 0.37, 'y': 0.05},
-                             background_normal='',
-                             background_color=(.7, .7, .7, 0))
-        record_btn_icon = Image(source='assets/capture.png',
-                                 size_hint=(None, None),
-                                 size=(140, 140),
-                                 pos=(227,55)
-                                 )
-        record_btn.add_widget(record_btn_icon)
+                             background_normal = 'assets/capture.png',
+                             background_down = 'assets/capture.png',
+                             border = (0, 0, 0, 0),
+                             background_color = (1, 1, 1, 1)
+        )
         #capture_btn.bind(on_press=self.toggle_recording)
         self.add_widget(record_btn)
 
@@ -196,20 +183,15 @@ class SettingScreen(FloatLayout):
 
 ###########################    BACk Button   ###################################
         back_btn = Button(size_hint=(None, None),
-                          size=(70, 70),
-                          pos_hint={'x': 0.02, 'y': 0.91},
-                          background_normal='',
-                          background_color=(0, 0, 0, 0)
-                          )
-        back_icon = Image(source='assets/back.png',
-                          size_hint=(None, None),
-                          size=(90, 90),
-                          pos=(0,900)
+                          size=(110, 110),
+                          pos_hint={'x': 0.01, 'y': 0.88},
+                          background_normal='assets/back.png',
+                          background_down='assets/back.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
                           )
 
-        back_btn.add_widget(back_icon)
         back_btn.bind(on_press=self.go_to_camera)
-
         self.add_widget(back_btn)
 
 #################################### Settings Buttons #########
@@ -219,36 +201,25 @@ class SettingScreen(FloatLayout):
         volume_btn = Button(size_hint=(None, None),
                             size=(150, 150),
                             pos_hint={'x': 0.18, 'y': 0.70},
-                            background_normal='',
-                            background_color=(0, 0, 0, 0)
+                            background_normal='assets/volume.png',
+                            background_down='assets/volume.png',
+                            border=(0, 0, 0, 0),
+                            background_color=(1, 1, 1, 1)
                             )
 
-        volume_icon = Image(source='assets/volume.png',
-                            size_hint=(None, None),
-                            size=(140, 140),
-                            pos=(112, 708)
-                            )
-
-        volume_btn.add_widget(volume_icon)
         volume_btn.bind(on_press=self.go_to_volume)  ##gO TO
         self.add_widget(volume_btn)
 
 #############################   FLIP CAMERA BUTTON ###########################
 ##############################################################################
         flip_btn = Button(size_hint=(None, None),
-                            size=(150, 150),
-                            pos_hint={'x': 0.18, 'y': 0.45},
-                            background_normal='',
-                            background_color=(0, 0, 0, 0)
-                            )
-
-        flip_icon = Image(source='assets/flip_camera.png',
-                            size_hint=(None, None),
-                            size=(140, 140),
-                            pos=(112, 455)
-                            )
-
-        flip_btn.add_widget(flip_icon)
+                          size=(150, 150),
+                          pos_hint={'x': 0.18, 'y': 0.45},
+                          background_normal='assets/flip_camera.png',
+                          background_down='assets/flip_camera.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
+                          )
         #flip_btn.bind(on_press=self.go_to_flip)  ##gO TO
         self.add_widget(flip_btn)
 
@@ -256,19 +227,14 @@ class SettingScreen(FloatLayout):
 #############################   FLASH CAMERA BUTTON #############################
 #################################################################################
         flash_btn = Button(size_hint=(None, None),
-                            size=(150, 150),
-                            pos_hint={'x': 0.60, 'y': 0.70},
-                            background_normal='',
-                            background_color=(0, 0, 0, 0)
-                            )
+                           size=(150, 150),
+                           pos_hint={'x': 0.60, 'y': 0.70},
+                           background_normal='assets/flash.png',
+                           background_down='assets/flash.png',
+                           border=(0, 0, 0, 0),
+                           background_color=(1, 1, 1, 1)
+                           )
 
-        flash_icon = Image(source='assets/flash.png',
-                            size_hint=(None, None),
-                            size=(150, 150),
-                            pos=(370, 708)
-                            )
-
-        flash_btn.add_widget(flash_icon)
         flash_btn.bind(on_press=self.go_to_flash)  ##gO TO
         self.add_widget(flash_btn)
 
@@ -278,17 +244,12 @@ class SettingScreen(FloatLayout):
         language_btn = Button(size_hint=(None, None),
                            size=(150, 150),
                            pos_hint={'x': 0.60, 'y': 0.45},
-                           background_normal='',
-                           background_color=(0, 0, 0, 0)
-                           )
+                              background_normal='assets/language.png',
+                              background_down='assets/language.png',
+                              border=(0, 0, 0, 0),
+                              background_color=(1, 1, 1, 1)
+                              )
 
-        language_icon = Image(source='assets/language.png',
-                           size_hint=(None, None),
-                           size=(140, 140),
-                           pos=(365, 450)
-                           )
-
-        language_btn.add_widget(language_icon)
         language_btn.bind(on_press=self.go_to_language)  ##gO TO
         self.add_widget(language_btn)
 
@@ -299,18 +260,13 @@ class SettingScreen(FloatLayout):
 #################################################################################
         manual_btn = Button(size_hint=(None, None),
                               size=(240, 240),
-                              pos_hint={'x': 0.32, 'y': 0.15},
-                              background_normal='',
-                              background_color=(0, 0, 0, 0)
-                              )
+                              pos_hint={'x': 0.35, 'y': 0.15},
+                            background_normal='assets/manual.png',
+                            background_down='assets/manual.png',
+                            border=(0, 0, 0, 0),
+                            background_color=(1, 1, 1, 1)
+                            )
 
-        manual_icon = Image(source='assets/manual.png',
-                              size_hint=(None, None),
-                              size=(220, 220),
-                              pos=(200, 150)
-                              )
-
-        manual_btn.add_widget(manual_icon)
         manual_btn.bind(on_press=self.go_to_guide)  ##gO TO
         self.add_widget(manual_btn)
 
@@ -361,29 +317,19 @@ class FlashScreen(FloatLayout):
             self.rect = Rectangle(size=(self.width, self.height), pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        back3_btn = Button(size_hint=(None, None),
-                          size=(70, 70),
-                          pos_hint={'x': 0.02, 'y': 0.91},
-                          background_normal='',
-                          background_color=(0, 0, 0, 0)
-                          )
-        back3_icon = Image(source='assets/back.png',
-                          size_hint=(None, None),
-                          size=(90, 90),
-                          pos=(0, 900)
+        back_btn = Button(size_hint=(None, None),
+                          size=(110, 110),
+                          pos_hint={'x': 0.01, 'y': 0.88},
+                          background_normal='assets/back.png',
+                          background_down='assets/back.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
                           )
 
-        back3_btn.add_widget(back3_icon)
-        back3_btn.bind(on_press=self.go_to_settings)
 
-        self.add_widget(back3_btn)
+        back_btn.bind(on_press=self.go_to_settings)
 
-
-
-
-
-
-
+        self.add_widget(back_btn)
 
 
     def _update_rect(self, *args):
@@ -419,22 +365,18 @@ class VolumeScreen(FloatLayout):
             self.rect = Rectangle(size=(self.width, self.height), pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        back4_btn = Button(size_hint=(None, None),
-                          size=(70, 70),
-                          pos_hint={'x': 0.02, 'y': 0.91},
-                          background_normal='',
-                          background_color=(0, 0, 0, 0)
-                          )
-        back4_icon = Image(source='assets/back.png',
-                          size_hint=(None, None),
-                          size=(90, 90),
-                          pos=(0, 900)
+        back_btn = Button(size_hint=(None, None),
+                          size=(110, 110),
+                          pos_hint={'x': 0.01, 'y': 0.88},
+                          background_normal='assets/back.png',
+                          background_down='assets/back.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
                           )
 
-        back4_btn.add_widget(back4_icon)
-        back4_btn.bind(on_press=self.go_to_settings)
+        back_btn.bind(on_press=self.go_to_settings)
 
-        self.add_widget(back4_btn)
+        self.add_widget(back_btn)
 
 
 
@@ -470,22 +412,18 @@ class GuideScreen(FloatLayout):
             self.rect = Rectangle(size=(self.width, self.height), pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        back5_btn = Button(size_hint=(None, None),
-                          size=(70, 70),
-                          pos_hint={'x': 0.02, 'y': 0.91},
-                          background_normal='',
-                          background_color=(0, 0, 0, 0)
-                          )
-        back5_icon = Image(source='assets/back.png',
-                          size_hint=(None, None),
-                          size=(90, 90),
-                          pos=(0, 900)
+        back_btn = Button(size_hint=(None, None),
+                          size=(110, 110),
+                          pos_hint={'x': 0.01, 'y': 0.88},
+                          background_normal='assets/back.png',
+                          background_down='assets/back.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
                           )
 
-        back5_btn.add_widget(back5_icon)
-        back5_btn.bind(on_press=self.go_to_settings)
+        back_btn.bind(on_press=self.go_to_settings)
 
-        self.add_widget(back5_btn)
+        self.add_widget(back_btn)
 
 
 
@@ -517,22 +455,18 @@ class LanguageScreen(FloatLayout):
             self.rect = Rectangle(size=(self.width, self.height), pos=self.pos)
         self.bind(size=self._update_rect, pos=self._update_rect)
 
-        back2_btn = Button(size_hint=(None, None),
-                          size=(70, 70),
-                          pos_hint={'x': 0.02, 'y': 0.91},
-                          background_normal='',
-                          background_color=(0, 0, 0, 0)
-                          )
-        back2_icon = Image(source='assets/back.png',
-                          size_hint=(None, None),
-                          size=(90, 90),
-                          pos=(0, 900)
+        back_btn = Button(size_hint=(None, None),
+                          size=(110, 110),
+                          pos_hint={'x': 0.01, 'y': 0.88},
+                          background_normal='assets/back.png',
+                          background_down='assets/back.png',
+                          border=(0, 0, 0, 0),
+                          background_color=(1, 1, 1, 1)
                           )
 
-        back2_btn.add_widget(back2_icon)
-        back2_btn.bind(on_press=self.go_to_settings)
+        back_btn.bind(on_press=self.go_to_settings)
 
-        self.add_widget(back2_btn)
+        self.add_widget(back_btn)
 
     def go_to_settings(self, instance):
         self.screen_manager.transition = SlideTransition(direction="right")
@@ -541,28 +475,28 @@ class LanguageScreen(FloatLayout):
 ################## LANGUAGE CHOICE BUTTONS ##################
         language1_btn = Button(text='English',
                               size_hint=(None, None),
-                              size =(420,50),
-                              font_size=30,
+                              size =(470,80),
+                              font_size=40,
                               color=(1,1,1,1),
-                              pos_hint={'x': 0.15, 'y': 0.55},
+                              pos_hint={'x': 0.15, 'y': 0.65},
                               background_normal='',
                               background_color=(0, 0, 0, 1))
 
         language2_btn = Button(text='Tagalog',
                               size_hint=(None, None),
-                              size =(420,50),
-                              font_size=30,
+                              size =(467,80),
+                              font_size=40,
                               color=(1,1,1,1),
-                              pos_hint={'x': 0.15, 'y': 0.45},
+                              pos_hint={'x': 0.15, 'y': 0.48},
                               background_normal='',
                               background_color=(0, 0, 0, 1))
 
         language3_btn = Button(text='Bisaya',
                               size_hint=(None, None),
-                              size =(420,50),
-                              font_size=30,
+                              size =(467,80),
+                              font_size=40,
                               color=(1,1,1,1),
-                              pos_hint={'x': 0.15, 'y': 0.35},
+                              pos_hint={'x': 0.15, 'y': 0.30},
                               background_normal='',
                               background_color=(0, 0, 0, 1))
 
@@ -607,15 +541,6 @@ class ScreenManagement(ScreenManager):
         self.add_widget(flash_screen)
         self.add_widget(volume_screen)
         self.add_widget(guide_screen)
-
-
-
-
-
-
-
-
-
 
 
 ###################### LOOP ###########################
