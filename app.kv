@@ -1,12 +1,21 @@
 <MainScreen>:
     FloatLayout:
         canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
             Rectangle:
-                pos: self.pos
-                size: self.size
-        
+                source: 'assets/bg.jpg'
+                pos: self.pos  
+                size: self.size 
+
+        Label:
+            id: name
+            text: "CASH BUDDY"
+            color: 0, 0, 0, 1 
+            size_hint: None, None 
+            size: self.texture_size
+            font_size: 30 
+            font_name: 'assets/AovelSansRounded-rdDL.ttf' 
+            pos_hint: {"right": 0.55, "top": 0.93} 
+
         # Settings button
         Button:
             id: settings_button
@@ -33,7 +42,7 @@
         Button:
             id: flash_button
             size_hint: None, None
-            size: 25, 60
+            size: 20, 60
             pos_hint: {"right": 0.80, "y": 0.05}
             background_normal: 'assets/flash.png'
             background_down: 'assets/flash1.png'
@@ -43,18 +52,17 @@
 <SettingsScreen>:
     FloatLayout:
         canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
             Rectangle:
-                pos: self.pos
-                size: self.size
+                source: 'assets/bg.jpg'
+                pos: self.pos  
+                size: self.size 
 
         # Back button        
         Button:
             id: back_button
             size_hint: None, None
             size: 50, 50
-            pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
+            pos_hint: {"x": 0.05, "top": 0.95}
             background_normal: 'assets/back.png'
             background_down: 'assets/back1.png'
             border: [0, 0, 0, 0]
@@ -63,15 +71,15 @@
         BoxLayout:
             orientation: 'vertical'
             size_hint: None, None
-            size: 200, 300  # Overall size of the settings panel
-            pos_hint: {"center_x": 0.43, "center_y": 0.6}
+            size: 200, 300 
+            pos_hint: {"center_x": 0.43, "center_y": 0.4}
             spacing: 50
 
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint: 1, None
-                height: 100  # Height of the row
-                spacing: 50  # Space between buttons
+                height: 100 
+                spacing: 50 
 
                 Button:
                     id: volume_button
@@ -95,7 +103,7 @@
                 orientation: 'horizontal'
                 size_hint: 1, None
                 pos_hint: {"center_x": 0.85}
-                height: 100  # Height of the row
+                height: 100 
 
                 Button:
                     id: manual_button
@@ -105,35 +113,72 @@
                     background_down: 'assets/manual1.png'
                     border: [0, 0, 0, 0]
                     on_press: root.manual_screen()
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint: 1, None
+                pos_hint: {"center_x": 0.70}
+
+                Label:
+                    id: name
+                    text: "CASH BUDDY"
+                    color: 0, 0, 0, 1 
+                    size_hint: None, None 
+                    size: self.texture_size
+                    font_size: 30 
+                    font_name: 'assets/AovelSansRounded-rdDL.ttf'
 
 <AdjustVolumeScreen>:
     FloatLayout:
         canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
             Rectangle:
-                pos: self.pos
-                size: self.size
+                source: 'assets/bg.jpg'
+                pos: self.pos  
+                size: self.size 
 
         # Back button        
         Button:
             id: back_button
             size_hint: None, None
             size: 50, 50
-            pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
+            pos_hint: {"x": 0.05, "top": 0.95}
             background_normal: 'assets/back.png'
             background_down: 'assets/back.png'
             border: [0, 0, 0, 0]
             on_press: root.go_to_settings()
 
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: None, None
+            size: 200, 50 
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            padding: 10 
+            spacing: 20 
+
+            Button:
+                id: volume_button
+                text: "Increase Volume"
+                size_hint: 1, None
+                height: 50
+                font_size: 20
+                background_color: 0, 0, 0, 1
+                on_press: root.adjust_volume(5)
+
+            Button:
+                id: volume_button
+                text: "Decrease Volume"
+                size_hint: 1, None
+                height: 50
+                font_size: 20
+                background_color: 0, 0, 0, 1
+                on_press: root.adjust_volume(-5)
+
 <ChangeLanguageScreen>:
     FloatLayout:
         canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
             Rectangle:
-                pos: self.pos
-                size: self.size
+                source: 'assets/bg.jpg'
+                pos: self.pos  
+                size: self.size 
 
         # Back button        
         Button:
@@ -149,43 +194,130 @@
         BoxLayout:
             orientation: 'vertical'
             size_hint: None, None
-            size: 200, 150  # Adjusted size for two buttons
+            size: 200, 150 
             pos_hint: {"center_x": 0.5, "center_y": 0.6}
-            padding: 10  # Margins around the buttons
-            spacing: 20  # Space between the buttons
+            padding: 10 
+            spacing: 20 
 
             # English button
             Button:
                 id: en_button
                 text: "English"
-                size_hint: 1, None  # Full width of the BoxLayout, fixed height
+                size_hint: 1, None
                 height: 50
                 font_size: 20
+                background_color: 0, 0, 0, 1
+                on_press: root.change_to_english(self)
 
             # Filipino button
             Button:
                 id: tl_button
                 text: "Filipino"
-                size_hint: 1, None  # Full width of the BoxLayout, fixed height
+                size_hint: 1, None 
                 height: 50
                 font_size: 20
+                background_color: 0, 0, 0, 1
+                on_press: root.change_to_filipino(self)
 
 <ManualScreen>:
     FloatLayout:
         canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1  # White color
             Rectangle:
-                pos: self.pos
-                size: self.size
+                source: 'assets/bg.jpg'
+                pos: self.pos  
+                size: self.size 
 
         # Back button        
         Button:
             id: back_button
             size_hint: None, None
             size: 50, 50
-            pos_hint: {"x": 0.05, "top": 0.95}  # Fixed 'left' to 'x'
+            pos_hint: {"x": 0.05, "top": 0.95} 
             background_normal: 'assets/back.png'
             background_down: 'assets/back1.png'
             border: [0, 0, 0, 0]
             on_press: root.go_to_settings()
+        
+        BoxLayout:
+            orientation: "vertical"
+            padding: 10
+            size_hint: 1, None
+            height: self.minimum_height
+            pos_hint: {"top": 0.90}
+            
+            ScrollView:
+                size_hint: 1, None
+                height: 600  # Make the scroll view fit within the screen size
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    
+                    Label:
+                        text: "How to Use Cash Buddy\n"
+                        font_size: 18
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        bold: True
+                        halign: 'center' 
+                    
+                    Label:
+                        text: "1. Launch the App\nOpen the Cash Buddy app on your device."
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None  
+                        padding: [10, 10]  
+                    
+                    Label:
+                        text: "2. Select Your Language\nOn the main screen, choose between English or Filipino.\nThe app will guide you in your selected language."
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None
+                        padding: [10, 10]  
+                    
+                    Label:
+                        text: "3. Scan a Bill\nPlace the bill flat on a surface.\nUse the phone’s camera to scan the bill by pointing it directly at the currency.\nEnsure proper lighting for accurate detection."
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None  
+                        padding: [10, 10] 
+                    
+                    Label:
+                        text: "4. Listen to the Announcement\nThe app will announce the denomination of the bill aloud.\nFor additional clarity, the information will also be displayed on the screen."
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None  
+                        padding: [10, 10]  
+                    
+                    Label:
+                        text: "5. Repeat for More Bills\nRepeat the scanning process for additional bills."
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None 
+                        padding: [10, 10] 
+
+                    Label:
+                        text: "6. Adjust Settings (Optional)\nAccess the Settings menu to adjust preferences such as:\n- Volume control\n- Language selection\n- Help & Support"
+                        font_size: 14
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                        color: 0, 0, 0, 1
+                        halign: 'left'
+                        text_size: self.width - 20, None  
+                        padding: [10, 10]
